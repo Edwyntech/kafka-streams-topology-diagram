@@ -23,6 +23,7 @@ Ce projet est construit comme un projet Maven multi-module basé sur le JDK 21.
 Parmi ces modules :
 
 * `example` - Un exemple de projet Spring Boot qui utilise Kafka Streams.
+* `kafka-streams-topology-actuator` - L'extension de Spring Boot Actuator.
 
 [NOTE]
 ====

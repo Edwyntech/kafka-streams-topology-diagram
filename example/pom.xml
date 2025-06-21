@@ -27,6 +27,11 @@
       <artifactId>spring-boot-docker-compose</artifactId>
     </dependency>
     <dependency>
+      <groupId>tech.edwyn</groupId>
+      <artifactId>kafka-streams-topology-actuator</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>

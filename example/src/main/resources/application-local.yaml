@@ -3,12 +3,7 @@ spring:
     name: example
   docker:
     compose:
-      lifecycle-management: start_and_stop
-      start:
-        command: up
-      stop:
-        command: down
-        timeout: 10s
+      lifecycle-management: none
       file: example/docker-compose.yaml
   kafka:
     bootstrap-servers: localhost:10000
@@ -24,3 +19,8 @@ example:
     output: topic-output
   stores:
     history: store-history
+management:
+  endpoints:
+    web:
+      exposure:
+        include: kafkaStreamsTopology
