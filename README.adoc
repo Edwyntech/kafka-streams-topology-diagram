@@ -16,14 +16,21 @@ image:{cicd}/badge.svg[link={cicd},window=_blank]
 
 Un endpoint https://docs.spring.io/spring-boot/how-to/actuator.html#page-title[Spring Actuator^] pour afficher une topologie link:https://kafka.apache.org/documentation/streams/[Kafka Streams^] avec https://mermaid.js.org/[Mermaid^].
 
+[TIP]
+====
+Par exemple, le projet link:example[] affichera
+
+image::.github/assets/example.png[width=50%]
+====
+
 == Structure
 
 Ce projet est construit comme un projet Maven multi-module basé sur le JDK 21.
 
 Parmi ces modules :
 
-* `example` - Un exemple de projet Spring Boot qui utilise Kafka Streams.
-* `kafka-streams-topology-actuator` - L'extension de Spring Boot Actuator.
+* `link:example[]` - Un exemple de projet Spring Boot qui utilise Kafka Streams.
+* `link:kafka-streams-topology-actuator[]` - L'extension de Spring Boot Actuator.
 
 [NOTE]
 ====
@@ -42,7 +49,14 @@ Les répertoires qui démarrent par un point contiennent des configurations addi
 |Documentation|./mvnw verify
 |===
 
+[CAUTION]
+====
+Le projet link:example[] nécessite de démarrer en profil `local` avec un docker.
+====
+
 == Auteurs
+
+image::{badges}/Sur_LinkedIn-email?style=social&logo=linkedin&label=Arnault Le Prévost-Corvellec[link=https://www.linkedin.com/in/arnault-l-054ab18b/,window=_blank]
 
 image::https://img.shields.io/badge/Par_email-email?style=social&logo=microsoftoutlook&label={author}[link={email}]
 image::{badges}/Sur_LinkedIn-email?style=social&logo=linkedin&label={author}[link={linkedin},window=_blank]

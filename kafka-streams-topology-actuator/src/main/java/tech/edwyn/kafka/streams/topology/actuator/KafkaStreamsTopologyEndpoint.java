@@ -8,6 +8,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import tech.edwyn.kafka.streams.topology.KafkaStreamsTopologyDiagramBuilder;
 
+import static java.util.Objects.requireNonNull;
+
 @WebEndpoint(id = "kafkaStreamsTopology")
 public class KafkaStreamsTopologyEndpoint {
 
@@ -23,7 +25,7 @@ public class KafkaStreamsTopologyEndpoint {
   @ReadOperation
   public ModelAndView topology() {
     Topology topology = streamsBuilderFactoryBean.getTopology();
-    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(requireNonNull(topology));
 
     ModelMap model = new ModelMap()
       .addAttribute("topologyDiagram", topologyDiagram);
