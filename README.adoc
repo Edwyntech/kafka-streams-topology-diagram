@@ -1,0 +1,49 @@
+= {documentation}[Kafka Streams Actuator]
+:author:        Edwyn Tech
+:owner:         Edwyntech
+:email:         mailto:contact@edwyn.tech
+:project:       kafka-streams-topology-diagram
+:key:           {owner}_{project}
+:repo:          https://github.com/{owner}/{project}
+:documentation: https://{owner}.github.io/{project}
+:cicd:          {repo}/actions/workflows/cicd.yaml
+:linkedin:      https://www.linkedin.com/company/74937487/
+:youtube:       https://www.youtube.com/@EdwynTech
+:twitch:        https://www.twitch.tv/edwyntech
+:badges:        https://img.shields.io/badge
+
+image:{cicd}/badge.svg[link={cicd},window=_blank]
+
+Un endpoint https://docs.spring.io/spring-boot/how-to/actuator.html#page-title[Spring Actuator^] pour afficher une topologie link:https://kafka.apache.org/documentation/streams/[Kafka Streams^] avec https://mermaid.js.org/[Mermaid^].
+
+== Structure
+
+Ce projet est construit comme un projet Maven multi-module basé sur le JDK 21.
+
+Parmi ces modules :
+
+* `example` - Un exemple de projet Spring Boot qui utilise Kafka Streams.
+
+[NOTE]
+====
+Les répertoires qui démarrent par un point contiennent des configurations additionnelles :
+
+* `.github` - configure le CICD
+* `.idea` - configure IntelliJ
+* `.mvn` - configure la toolchain Maven
+====
+
+== Cycle De Vie
+
+|===
+
+|Construction|./mvnw package
+|Documentation|./mvnw verify
+|===
+
+== Auteurs
+
+image::https://img.shields.io/badge/Par_email-email?style=social&logo=microsoftoutlook&label={author}[link={email}]
+image::{badges}/Sur_LinkedIn-email?style=social&logo=linkedin&label={author}[link={linkedin},window=_blank]
+image::https://img.shields.io/badge/Youtube-channel?style=social&logo=youtube&label={author}[link={youtube},window=_blank]
+image::https://img.shields.io/badge/Twitch-channel?style=social&logo=twitch&label={author}[link={twitch},window=_blank]

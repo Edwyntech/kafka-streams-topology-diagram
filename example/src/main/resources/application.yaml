@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: example
+  docker:
+    compose:
+      enabled: false
+  kafka:
+    streams:
+      state-dir: target/${random.uuid}
+logging:
+  level:
+    root: warn
+    tech.edwyn: trace
+    org.apache.kafka.clients: error
+    org.springframework.kafka.config.StreamsBuilderFactoryBean: debug
+example:
+  topics:
+    input: topic-input
+    output: topic-output
+  stores:
+    history: store-history

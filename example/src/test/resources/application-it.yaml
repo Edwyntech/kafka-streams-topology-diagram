@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: it
+  kafka:
+    admin:
+      auto-create: false
+    consumer:
+      group-id: ${spring.application.name}-group

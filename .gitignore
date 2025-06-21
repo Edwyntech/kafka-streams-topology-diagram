@@ -1,0 +1,14 @@
+### Maven ###
+target/
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store

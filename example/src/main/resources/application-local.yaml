@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: example
+  docker:
+    compose:
+      lifecycle-management: start_and_stop
+      start:
+        command: up
+      stop:
+        command: down
+        timeout: 10s
+      file: example/docker-compose.yaml
+  kafka:
+    bootstrap-servers: localhost:10000
+logging:
+  level:
+    root: warn
+    tech.edwyn: trace
+    org.apache.kafka.clients: error
+    org.springframework.kafka.config.StreamsBuilderFactoryBean: debug
+example:
+  topics:
+    input: topic-input
+    output: topic-output
+  stores:
+    history: store-history
