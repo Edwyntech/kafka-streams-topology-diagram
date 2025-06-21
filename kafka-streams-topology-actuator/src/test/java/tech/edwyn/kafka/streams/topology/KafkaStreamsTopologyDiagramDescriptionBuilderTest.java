@@ -20,6 +20,8 @@ import org.springframework.kafka.annotation.EnableKafkaStreams;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.regex.Pattern;
+
 import static org.apache.kafka.common.serialization.Serdes.Integer;
 import static org.apache.kafka.common.serialization.Serdes.String;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,6 +39,26 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
   @Test
   void buildsTopologyDiagramWithSingleSource() {
     streamsBuilder.stream("test",
+      Consumed.with(Integer(), String())
+              .withName("test-source"));
+
+    Topology topology = streamsBuilder.build();
+    KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
+    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+
+    assertThat(topologyDiagram).hasToString("""
+      flowchart TD
+      \ttest@{ shape: das, label: 'test' }
+      \ttest-source@{ shape: docs, label: 'test-source' }
+      \tsubgraph Sub-topology: 0
+      \t\ttest --> test-source
+      \tend
+      """);
+  }
+
+  @Test
+  void buildsTopologyDiagramWithSingleSourceAndTopicPattern() {
+    streamsBuilder.stream(Pattern.compile("test"),
       Consumed.with(Integer(), String())
               .withName("test-source"));
 
