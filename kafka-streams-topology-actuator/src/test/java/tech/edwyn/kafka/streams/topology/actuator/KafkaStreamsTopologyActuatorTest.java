@@ -1,4 +1,4 @@
-package tech.edwyn.kafka.streams.topoogy.actuator;
+package tech.edwyn.kafka.streams.topology.actuator;
 
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.KStream;
@@ -17,7 +17,7 @@ import static org.apache.kafka.common.serialization.Serdes.Integer;
 import static org.apache.kafka.common.serialization.Serdes.String;
 import static org.apache.kafka.streams.kstream.Consumed.with;
 import static org.springframework.http.MediaType.TEXT_HTML;
-import static tech.edwyn.kafka.streams.topoogy.actuator.KafkaStreamsTopologyActuatorTest.TestConfig;
+import static tech.edwyn.kafka.streams.topology.actuator.KafkaStreamsTopologyActuatorTest.TestConfig;
 
 @SpringBootTest(classes = TestConfig.class)
 @ActiveProfiles("test")

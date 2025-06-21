@@ -1,4 +1,4 @@
-package tech.edwyn.kafka.streams.topoogy.actuator;
+package tech.edwyn.kafka.streams.topology.actuator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.assertj.MockMvcTester;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static tech.edwyn.kafka.streams.topoogy.actuator.WithoutKafkaStreamsTest.TestConfig;
+import static tech.edwyn.kafka.streams.topology.actuator.WithoutKafkaStreamsTest.TestConfig;
 
 @SpringBootTest(classes = TestConfig.class)
 @ActiveProfiles("test")

@@ -1,4 +1,4 @@
-package tech.edwyn.kafka.streams.topoogy.actuator.integration;
+package tech.edwyn.kafka.streams.topology.actuator.integration;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
