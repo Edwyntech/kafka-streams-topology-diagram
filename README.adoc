@@ -56,7 +56,7 @@ Le projet link:example[] nécessite de démarrer en profil `local` avec un docke
 
 == Auteurs
 
-image::{badges}/Sur_LinkedIn-email?style=social&logo=linkedin&label=Arnault%20Le%20Prévost-Corvellec[link=https://www.linkedin.com/in/arnault-l-054ab18b/,window=_blank]
+image::{badges}/Sur_LinkedIn-email?style=social&label=Arnault%20Le%20Prevost--Corvellec[link=https://www.linkedin.com/in/arnault-l-054ab18b,window=_blank]
 
 image::https://img.shields.io/badge/Par_email-email?style=social&logo=microsoftoutlook&label={author}[link={email}]
 image::{badges}/Sur_LinkedIn-email?style=social&logo=linkedin&label={author}[link={linkedin},window=_blank]
