@@ -14,6 +14,7 @@
 
   <modules>
     <module>example</module>
+    <module>kafka-streams-topology-actuator</module>
   </modules>
 
   <properties>

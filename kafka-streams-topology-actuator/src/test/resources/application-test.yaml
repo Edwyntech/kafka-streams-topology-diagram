@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: test
+  kafka:
+    streams:
+      auto-startup: false
+logging:
+  level:
+    root: warn
+    tech.edwyn: trace
+    org.apache.kafka.clients: error
+    org.springframework.kafka.config.StreamsBuilderFactoryBean: debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include: kafkaStreamsTopology
