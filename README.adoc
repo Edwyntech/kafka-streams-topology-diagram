@@ -20,7 +20,7 @@ Un endpoint https://docs.spring.io/spring-boot/how-to/actuator.html#page-title[S
 ====
 Par exemple, le projet link:example[] affichera
 
-image::.github/assets/example.png[width=50%]
+image::.github/assets/example.png[width=50%,align="center"]
 ====
 
 == Structure
