@@ -25,6 +25,6 @@ jobs:
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           cache: 'maven'
       - name: Ensure browsers are installed
-        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+        run: mvn exec:java -e -pl kafka-streams-topology-actuator -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
       - run: ./mvnw package
       - run: ./mvnw verify
