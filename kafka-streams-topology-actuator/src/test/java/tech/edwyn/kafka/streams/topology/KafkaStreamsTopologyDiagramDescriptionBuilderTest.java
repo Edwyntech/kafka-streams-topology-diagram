@@ -44,16 +44,19 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
 
     Topology topology = streamsBuilder.build();
     KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
 
-    assertThat(topologyDiagram).hasToString("""
-      flowchart TD
-      \ttest@{ shape: das, label: 'test' }
-      \ttest-source@{ shape: docs, label: 'test-source' }
-      \tsubgraph Sub-topology: 0
-      \t\ttest --> test-source
-      \tend
-      """);
+    assertThat(topologyDiagram.toString())
+      .isEqualToIgnoringWhitespace("""
+        flowchart TD
+        
+          test@{ shape: das, label: 'test' }
+          test-source@{ shape: docs, label: 'test-source' }
+        
+          subgraph Sub-topology: 0
+            test --> test-source
+          end
+        """);
   }
 
   @Test
@@ -64,16 +67,19 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
 
     Topology topology = streamsBuilder.build();
     KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
 
-    assertThat(topologyDiagram).hasToString("""
-      flowchart TD
-      \ttest@{ shape: das, label: 'test' }
-      \ttest-source@{ shape: docs, label: 'test-source' }
-      \tsubgraph Sub-topology: 0
-      \t\ttest --> test-source
-      \tend
-      """);
+    assertThat(topologyDiagram.toString())
+      .isEqualToNormalizingWhitespace("""
+        flowchart TD
+        
+          test@{ shape: das, label: 'test' }
+          test-source@{ shape: docs, label: 'test-source' }
+        
+          subgraph Sub-topology: 0
+            test --> test-source
+          end
+        """);
   }
 
   @Test
@@ -87,21 +93,25 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
 
     Topology topology = streamsBuilder.build();
     KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
 
-    assertThat(topologyDiagram).hasToString("""
-      flowchart TD
-      \tfirst@{ shape: das, label: 'first' }
-      \tsecond@{ shape: das, label: 'second' }
-      \tfirst-source@{ shape: docs, label: 'first-source' }
-      \tsecond-source@{ shape: docs, label: 'second-source' }
-      \tsubgraph Sub-topology: 0
-      \t\tfirst --> first-source
-      \tend
-      \tsubgraph Sub-topology: 1
-      \t\tsecond --> second-source
-      \tend
-      """);
+    assertThat(topologyDiagram.toString())
+      .isEqualToNormalizingWhitespace("""
+        flowchart TD
+        
+          first@{ shape: das, label: 'first' }
+          second@{ shape: das, label: 'second' }
+          first-source@{ shape: docs, label: 'first-source' }
+          second-source@{ shape: docs, label: 'second-source' }
+        
+          subgraph Sub-topology: 0
+            first --> first-source
+          end
+        
+          subgraph Sub-topology: 1
+            second --> second-source
+          end
+        """);
   }
 
   @Test
@@ -120,18 +130,21 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
 
     Topology topology = streamsBuilder.build();
     KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
 
-    assertThat(topologyDiagram).hasToString("""
-      flowchart TD
-      \ttest@{ shape: das, label: 'test' }
-      \ttest-source@{ shape: docs, label: 'test-source' }
-      \ttest-processor@{ shape: subproc, label: 'test-processor' }
-      \tsubgraph Sub-topology: 0
-      \t\ttest --> test-source
-      \t\ttest-source --> test-processor
-      \tend
-      """);
+    assertThat(topologyDiagram.toString())
+      .isEqualToNormalizingWhitespace("""
+        flowchart TD
+        
+          test@{ shape: das, label: 'test' }
+          test-source@{ shape: docs, label: 'test-source' }
+          test-processor@{ shape: subproc, label: 'test-processor' }
+        
+          subgraph Sub-topology: 0
+            test --> test-source
+            test-source --> test-processor
+          end
+        """);
   }
 
   @Test
@@ -157,20 +170,23 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
 
     Topology topology = streamsBuilder.build();
     KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
 
-    assertThat(topologyDiagram).hasToString("""
-      flowchart TD
-      \ttest@{ shape: das, label: 'test' }
-      \ttest-store@{ shape: database, label: 'test-store' }
-      \ttest-source@{ shape: docs, label: 'test-source' }
-      \ttest-processor@{ shape: subproc, label: 'test-processor' }
-      \tsubgraph Sub-topology: 0
-      \t\ttest --> test-source
-      \t\ttest-source --> test-processor
-      \t\ttest-processor --> test-store
-      \tend
-      """);
+    assertThat(topologyDiagram.toString())
+      .isEqualToNormalizingWhitespace("""
+        flowchart TD
+        
+          test@{ shape: das, label: 'test' }
+          test-store@{ shape: database, label: 'test-store' }
+          test-source@{ shape: docs, label: 'test-source' }
+          test-processor@{ shape: subproc, label: 'test-processor' }
+        
+          subgraph Sub-topology: 0
+            test --> test-source
+            test-source --> test-processor
+            test-processor --> test-store
+          end
+        """);
   }
 
   @Test
@@ -184,20 +200,23 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
 
     Topology topology = streamsBuilder.build();
     KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    String topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFor(topology);
+    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
 
-    assertThat(topologyDiagram).hasToString("""
-      flowchart TD
-      \ttest-in@{ shape: das, label: 'test-in' }
-      \ttest-out@{ shape: das, label: 'test-out' }
-      \ttest-source@{ shape: docs, label: 'test-source' }
-      \ttest-sink@{ shape: stadium, label: 'test-sink' }
-      \tsubgraph Sub-topology: 0
-      \t\ttest-in --> test-source
-      \t\ttest-source --> test-sink
-      \t\ttest-sink --> test-out
-      \tend
-      """);
+    assertThat(topologyDiagram.toString())
+      .isEqualToNormalizingWhitespace("""
+        flowchart TD
+        
+          test-in@{ shape: das, label: 'test-in' }
+          test-out@{ shape: das, label: 'test-out' }
+          test-source@{ shape: docs, label: 'test-source' }
+          test-sink@{ shape: stadium, label: 'test-sink' }
+        
+          subgraph Sub-topology: 0
+            test-in --> test-source
+            test-source --> test-sink
+            test-sink --> test-out
+          end
+        """);
   }
 
   @SpringBootConfiguration
