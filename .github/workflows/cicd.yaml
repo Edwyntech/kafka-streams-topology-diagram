@@ -19,12 +19,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Ensure browsers are installed
+        run: npx playwright install --with-deps
       - uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.JAVA_DISTRIBUTION }}
           cache: 'maven'
-      - name: Ensure browsers are installed
-        run: mvn exec:java -e -pl kafka-streams-topology-actuator -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
       - run: ./mvnw package
       - run: ./mvnw verify
