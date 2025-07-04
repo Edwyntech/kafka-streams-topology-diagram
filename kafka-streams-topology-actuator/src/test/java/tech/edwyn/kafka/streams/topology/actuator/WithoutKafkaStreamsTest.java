@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.assertj.MockMvcTester;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static tech.edwyn.kafka.streams.topology.actuator.WithoutKafkaStreamsTest.TestConfig;
 
 @SpringBootTest(classes = TestConfig.class)
@@ -25,6 +26,7 @@ public class WithoutKafkaStreamsTest {
     mvcTest.get()
            .uri("/actuator/kafkaStreamsTopology")
            .assertThat()
+           .apply(print())
            .hasStatus(NOT_FOUND);
   }
 

@@ -1,24 +1,10 @@
 spring:
-  application:
-    name: example
   docker:
     compose:
-      lifecycle-management: none
-      file: example/docker-compose.yaml
+      enabled: true
+      file: [ example/docker-compose.yaml ]
   kafka:
     bootstrap-servers: localhost:10000
-logging:
-  level:
-    root: warn
-    tech.edwyn: trace
-    org.apache.kafka.clients: error
-    org.springframework.kafka.config.StreamsBuilderFactoryBean: debug
-example:
-  topics:
-    input: topic-input
-    output: topic-output
-  stores:
-    history: store-history
 management:
   endpoints:
     web:

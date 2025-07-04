@@ -1,1 +1,1 @@
-tech.edwyn.kafka.streams.topology.actuator.KafkaStreamsTopologyActuatorAutoConfiguration
+tech.edwyn.kafka.streams.topology.actuator.TopologyActuatorAutoConfiguration

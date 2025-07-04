@@ -19,8 +19,8 @@ import static tech.edwyn.kafka.streams.topology.TopologyDiagram.Node.NodeType.*;
  * This class parses the topology description and creates a diagram representation that can be
  * rendered using Mermaid.js.
  */
-public class KafkaStreamsTopologyDiagramBuilder {
-  private static final Logger log = LoggerFactory.getLogger(KafkaStreamsTopologyDiagramBuilder.class);
+public class TopologyDiagramBuilder {
+  private static final Logger log = LoggerFactory.getLogger(TopologyDiagramBuilder.class);
 
   private final Map<String, TopologyDiagram.Node> nodesByName = new HashMap<>();
   private final Map<Integer, TopologyDiagram.Subgraph> subgraphsById = new HashMap<>();

@@ -17,12 +17,13 @@ import static org.apache.kafka.common.serialization.Serdes.Integer;
 import static org.apache.kafka.common.serialization.Serdes.String;
 import static org.apache.kafka.streams.kstream.Consumed.with;
 import static org.springframework.http.MediaType.TEXT_HTML;
-import static tech.edwyn.kafka.streams.topology.actuator.KafkaStreamsTopologyActuatorTest.TestConfig;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static tech.edwyn.kafka.streams.topology.actuator.TopologyActuatorAutoConfigurationTest.TestConfig;
 
 @SpringBootTest(classes = TestConfig.class)
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-class KafkaStreamsTopologyActuatorTest {
+class TopologyActuatorAutoConfigurationTest {
 
   @Autowired
   private MockMvcTester mvcTest;
@@ -32,6 +33,7 @@ class KafkaStreamsTopologyActuatorTest {
     mvcTest.get()
            .uri("/actuator/kafkaStreamsTopology")
            .assertThat()
+           .apply(print())
            .hasStatusOk()
            .hasContentTypeCompatibleWith(TEXT_HTML)
            .hasViewName("topology");
@@ -44,10 +46,8 @@ class KafkaStreamsTopologyActuatorTest {
 
     @Bean
     public KStream<Integer, String> testStream(StreamsBuilder builder) {
-      return builder.stream("test",
-        with(Integer(), String())
-          .withName("test-source")
-      );
+      return builder.stream("test", with(Integer(), String())
+        .withName("test-source"));
     }
   }
 }

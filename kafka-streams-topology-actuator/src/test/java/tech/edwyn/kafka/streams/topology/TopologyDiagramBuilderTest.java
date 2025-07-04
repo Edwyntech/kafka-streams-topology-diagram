@@ -26,12 +26,12 @@ import static org.apache.kafka.common.serialization.Serdes.Integer;
 import static org.apache.kafka.common.serialization.Serdes.String;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD;
-import static tech.edwyn.kafka.streams.topology.KafkaStreamsTopologyDiagramDescriptionBuilderTest.TestConfig;
+import static tech.edwyn.kafka.streams.topology.TopologyDiagramBuilderTest.TestConfig;
 
 @SpringBootTest(classes = TestConfig.class)
 @ActiveProfiles("test")
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
-class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
+class TopologyDiagramBuilderTest {
 
   @Autowired
   private StreamsBuilder streamsBuilder;
@@ -43,8 +43,8 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
               .withName("test-source"));
 
     Topology topology = streamsBuilder.build();
-    KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
+    TopologyDiagramBuilder topologyDiagramBuilder = new TopologyDiagramBuilder();
+    TopologyDiagram topologyDiagram = topologyDiagramBuilder.buildFrom(topology);
 
     assertThat(topologyDiagram.toString())
       .isEqualToIgnoringWhitespace("""
@@ -66,8 +66,8 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
               .withName("test-source"));
 
     Topology topology = streamsBuilder.build();
-    KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
+    TopologyDiagramBuilder topologyDiagramBuilder = new TopologyDiagramBuilder();
+    TopologyDiagram topologyDiagram = topologyDiagramBuilder.buildFrom(topology);
 
     assertThat(topologyDiagram.toString())
       .isEqualToNormalizingWhitespace("""
@@ -92,8 +92,8 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
               .withName("second-source"));
 
     Topology topology = streamsBuilder.build();
-    KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
+    TopologyDiagramBuilder topologyDiagramBuilder = new TopologyDiagramBuilder();
+    TopologyDiagram topologyDiagram = topologyDiagramBuilder.buildFrom(topology);
 
     assertThat(topologyDiagram.toString())
       .isEqualToNormalizingWhitespace("""
@@ -129,8 +129,8 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
                     Named.as("test-processor"));
 
     Topology topology = streamsBuilder.build();
-    KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
+    TopologyDiagramBuilder topologyDiagramBuilder = new TopologyDiagramBuilder();
+    TopologyDiagram topologyDiagram = topologyDiagramBuilder.buildFrom(topology);
 
     assertThat(topologyDiagram.toString())
       .isEqualToNormalizingWhitespace("""
@@ -169,8 +169,8 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
                     "test-store");
 
     Topology topology = streamsBuilder.build();
-    KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
+    TopologyDiagramBuilder topologyDiagramBuilder = new TopologyDiagramBuilder();
+    TopologyDiagram topologyDiagram = topologyDiagramBuilder.buildFrom(topology);
 
     assertThat(topologyDiagram.toString())
       .isEqualToNormalizingWhitespace("""
@@ -199,8 +199,8 @@ class KafkaStreamsTopologyDiagramDescriptionBuilderTest {
               .withName("test-sink"));
 
     Topology topology = streamsBuilder.build();
-    KafkaStreamsTopologyDiagramBuilder kafkaStreamsTopologyDiagramBuilder = new KafkaStreamsTopologyDiagramBuilder();
-    TopologyDiagram topologyDiagram = kafkaStreamsTopologyDiagramBuilder.buildFrom(topology);
+    TopologyDiagramBuilder topologyDiagramBuilder = new TopologyDiagramBuilder();
+    TopologyDiagram topologyDiagram = topologyDiagramBuilder.buildFrom(topology);
 
     assertThat(topologyDiagram.toString())
       .isEqualToNormalizingWhitespace("""
