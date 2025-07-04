@@ -48,8 +48,9 @@ class TopologyEndpointIT {
 
   @Test
   void noTopologyDisplaysErrorPage(Page page) {
+    TopologyUnavailable topologyUnavailable = new TopologyUnavailable();
     Mockito.when(topologyEndpoint.topology())
-           .thenThrow(new TopologyUnavailable());
+           .thenThrow(topologyUnavailable);
 
     page.navigate("http://localhost:%d/actuator/kafkaStreamsTopology".formatted(port));
     assertThat(page).hasTitle("Error");
