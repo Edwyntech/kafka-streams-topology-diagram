@@ -69,32 +69,31 @@ public class TopologyDiagramBuilder {
    * @param node the node to parse
    */
   private void parseNodes(@NotNull Node node) {
-    switch (node) {
-      case Source source -> {
-        createNode(source.name(), SOURCE);
+    if (node instanceof Source source) {
+      createNode(source.name(), SOURCE);
 
-        Optional.ofNullable(source.topicSet())
-                .ifPresent(topics -> topics.forEach(t -> createNode(t, TOPIC)));
+      Optional.ofNullable(source.topicSet())
+              .ifPresent(topics -> topics.forEach(t -> createNode(t, TOPIC)));
 
-        Optional.ofNullable(source.topicPattern())
-                .ifPresent(pattern -> createNode(pattern.pattern(), TOPIC));
+      Optional.ofNullable(source.topicPattern())
+              .ifPresent(pattern -> createNode(pattern.pattern(), TOPIC));
+    }
+
+    if (node instanceof Processor processor) {
+      createNode(processor.name(), PROCESSOR);
+
+      if (!processor.stores()
+                    .isEmpty()) {
+        processor.stores()
+                 .forEach(s -> createNode(s, STORE));
       }
-      case Processor processor -> {
-        createNode(processor.name(), PROCESSOR);
+    }
 
-        if (!processor.stores()
-                      .isEmpty()) {
-          processor.stores()
-                   .forEach(s -> createNode(s, STORE));
-        }
-      }
-      case Sink sink -> {
-        createNode(sink.name(), SINK);
+    if (node instanceof Sink sink) {
+      createNode(sink.name(), SINK);
 
-        Optional.ofNullable(sink.topic())
-                .ifPresent(s -> createNode(s, TOPIC));
-      }
-      default -> throw new IllegalStateException("Unexpected value: " + node);
+      Optional.ofNullable(sink.topic())
+              .ifPresent(s -> createNode(s, TOPIC));
     }
   }
 
@@ -130,24 +129,23 @@ public class TopologyDiagramBuilder {
     }
 
     // Create edges based on node's type
-    switch (node) {
-      case Source source -> {
-        Optional.ofNullable(source.topicSet())
-                .ifPresent(topics -> topics.forEach(t -> createEdge(id, t, source.name())));
+    if (node instanceof Source source) {
+      Optional.ofNullable(source.topicSet())
+              .ifPresent(topics -> topics.forEach(t -> createEdge(id, t, source.name())));
 
-        Optional.ofNullable(source.topicPattern())
-                .ifPresent(pattern -> createEdge(id, pattern.pattern(), source.name()));
-      }
-      case Processor processor -> {
-        if (!processor.stores()
-                      .isEmpty()) {
-          processor.stores()
-                   .forEach(name -> createEdge(id, processor.name(), name));
-        }
-      }
-      case Sink sink -> Optional.ofNullable(sink.topic())
-                                .ifPresent(name -> createEdge(id, sink.name(), name));
-      default -> throw new IllegalStateException("Unexpected value: " + node);
+      Optional.ofNullable(source.topicPattern())
+              .ifPresent(pattern -> createEdge(id, pattern.pattern(), source.name()));
+    }
+
+    if (node instanceof Processor processor && !processor.stores()
+                                                         .isEmpty()) {
+      processor.stores()
+               .forEach(name -> createEdge(id, processor.name(), name));
+    }
+
+    if (node instanceof Sink sink) {
+      Optional.ofNullable(sink.topic())
+              .ifPresent(name -> createEdge(id, sink.name(), name));
     }
   }
 
